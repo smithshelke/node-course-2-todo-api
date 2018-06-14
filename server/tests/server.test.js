@@ -94,7 +94,7 @@ describe('GET /todos/:id',()=>{
     .end(done);
   });
 
-    it('should return 404 if todo not found',done=>{
+    it('should return 404 for non-object ids',done=>{
       request(app)
       .get(`/todos/123`)
       .expect(404)
