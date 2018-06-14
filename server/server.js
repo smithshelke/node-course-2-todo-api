@@ -9,13 +9,11 @@ var bodyparser = require('body-parser');
 var app = express();
 app.use(bodyparser.json());
 app.use((req,res,next)=>{
-  console.log("i was trigered");
-  console.log(req.body,'from middleware');
   next();
-})
+});
 
 app.post('/todos',(req,res)=>{
-  console.log(req.body);
+//  console.log(req.body);
   var todo = new Todo({
     text: req.body.text
   });
@@ -31,7 +29,9 @@ app.get('/todos',(req,res)=>{
     res.send({todos});
   },(e)=>{
     res.status(400).send(e);
-  })
+  }).catch(e=>{
+      console.log(e);
+  });
 });
 
 app.get('/todos/:id',(req,res)=>{
@@ -45,7 +45,9 @@ app.get('/todos/:id',(req,res)=>{
        res.send({todo});
      },e=>{
        res.status(400).send(e);
-     })
+     }).catch(e=>{
+
+     });
   }
   else {
     res.status(404).send('id not valid');
