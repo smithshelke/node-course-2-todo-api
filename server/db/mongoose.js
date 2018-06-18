@@ -4,7 +4,7 @@ var client = {
   local:'mongodb://localhost:27017/TodoApp',
   heroku:'mongodb://smithshelke:smith11mr@ds159400.mlab.com:59400/mydb'
 }
-mongoose.connect(client.local);
+mongoose.connect(client.local||client.heroku);
 module.exports = {
   mongoose
 };
